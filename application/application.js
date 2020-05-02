@@ -25,16 +25,19 @@ class Application extends EventEmitter {
     /* When your application has connected, setup listeners and callbacks. */
     this.app_client.on("connect", function () {
       console.log("Connected the application.");
-      
+
       /* Subscribe to temperature event on device types of IBM-KTH-Demo and where the device ID is 0. */
       that.app_client.subscribeToDeviceEvents("IBM-KTH", "1", "device_data");
-      
+
       /* On a data recieved, emit event. */
       that.app_client.on("deviceEvent", async function (deviceType, deviceId, eventType, format, payload) {
         //console.log("Device Event from :: " +deviceType + " : " + deviceId + " of event " + eventType + " with payload : " + payload);
         that.emit('payload', payload);
       });
     });
+  }
+  DeviceCommand(command, data){
+    this.app_client.publishDeviceCommand("IBM-KTH","1", command, "json", data);
   }
 }
 

@@ -27,5 +27,11 @@ application.on('payload', function(data) {
   ws.emit('broadcast', JSON.parse(data).temp);
 });
 
+setInterval(() => Transmit(), 3000);
+
+function Transmit() {
+  application.DeviceCommand("test", "data")
+}
+
 /* Start server on the specified port and binding host app_env.port */
 http.listen(app_env.port || 4096, function() {});
