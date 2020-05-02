@@ -36,9 +36,6 @@ class Application extends EventEmitter {
       });
     });
   }
-  DeviceCommand(command, data){
-    this.app_client.publishDeviceCommand("IBM-KTH","1", command, "json", data);
-  }
 }
 
 module.exports = Application;
