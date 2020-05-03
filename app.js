@@ -28,6 +28,5 @@ application.on('payload', function(data) {
 });
 
 
-
 /* Start server on the specified port and binding host app_env.port */
 http.listen(app_env.port || 4096, function() {});

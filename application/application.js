@@ -12,7 +12,7 @@ class Application extends EventEmitter {
     /* This is our config for Watson IoT! */
     const app_config = {
       "org": org,
-      "id": "0",
+      "id": "1",
       "domain": "internetofthings.ibmcloud.com",
       "auth-key": key,
       "auth-token": token
@@ -32,7 +32,7 @@ class Application extends EventEmitter {
       /* publish command to device */
       var myData={'DelaySeconds' : 10};
       myData = JSON.stringify(myData);
-      appClient.publishDeviceCommand("IBM-KTH","1", "blink", "json", myData);
+      that.app_client.publishDeviceCommand("IBM-KTH","1", "blink", "json", myData);
 
       /* On a data recieved, emit event. */
       that.app_client.on("deviceEvent", async function (deviceType, deviceId, eventType, format, payload) {
