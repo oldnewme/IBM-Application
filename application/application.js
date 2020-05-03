@@ -29,6 +29,11 @@ class Application extends EventEmitter {
       /* Subscribe to temperature event on device types of IBM-KTH-Demo and where the device ID is 0. */
       that.app_client.subscribeToDeviceEvents("IBM-KTH", "1", "device_data");
 
+      /* publish command to device */
+      var myData={'DelaySeconds' : 10};
+      myData = JSON.stringify(myData);
+      appClient.publishDeviceCommand("IBM-KTH","1", "blink", "json", myData);
+
       /* On a data recieved, emit event. */
       that.app_client.on("deviceEvent", async function (deviceType, deviceId, eventType, format, payload) {
         //console.log("Device Event from :: " +deviceType + " : " + deviceId + " of event " + eventType + " with payload : " + payload);
